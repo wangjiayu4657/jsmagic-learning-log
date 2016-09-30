@@ -9,7 +9,7 @@
 
 ```
 否则当使用命令 :
-```
+
 会报如下错误:
 
 ```
@@ -56,3 +56,20 @@ export NODE_PATH=`npm root -g`
 然后执行:
 source ~/.bashrc使其生效即可
 ```
+
+3. 修改 bin/greet.js 来使用 index.js 导出的 greet 函数,修改后的内容是
+
+
+```
+    #!/usr/bin/env node
+    var test = require("../index.js");
+    // console.log(test());
+    console.log(test(process.argv.slice(2)));
+```
+其中`process.argv`返回命令行脚本的各个参数组成的数组`slice()`返回的是子数组,我们根据索引即可取出对应的元素.
+
+
+
+
+
+
