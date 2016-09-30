@@ -2,7 +2,7 @@
 
 1. 创建 index.js，然后导出函数 greet应该使用如下方法
 
-```
+``` js
  module.export = function greet(name) {
      return "hello, " + name;
     }
@@ -12,7 +12,7 @@
 
 会报如下错误:
 
-```
+``` js
 TypeError: greet is not a function
  at repl:1:1
  at sigintHandlersWrap (vm.js:22:35)
@@ -29,7 +29,7 @@ TypeError: greet is not a function
 
 2.当使用命令 `$ npm install -g .`安装全局的包时可能会遇到如下错误:
 
-```
+``` js
 Error: Cannot find module 'greet'
  at Function.Module._resolveFilename (module.js:455:15)
  at Function.Module._load (module.js:403:25)
@@ -42,7 +42,7 @@ Error: Cannot find module 'greet'
  at REPLServer.defaultEval (repl.js:313:29)
  at bound (domain.js:280:14)
 
-```
+``` 
 产生的原因是:
 要知道，当你用 require 加载一个包时，node 会先在本地的 node_modules 目录里查找。如果它找不到这个包，它会继续到全局的 node_modules 目录里找。
 所以，我们需要把全局的 node_modules 目录的位置告诉 node，这样 node 才会知道要到哪里去加载 nodemon。下一步，我们需要设置 NODE_PATH 环境变量
@@ -50,7 +50,7 @@ Error: Cannot find module 'greet'
 解决办法:
 把以下内容添加到你的命令行配置文件：
 
-```
+``` c
 # ~/.bashrc
 export NODE_PATH=`npm root -g`
 然后执行:
@@ -60,7 +60,7 @@ source ~/.bashrc使其生效即可
 3. 修改 bin/greet.js 来使用 index.js 导出的 greet 函数,修改后的内容是
 
 
-```
+``` js
     #!/usr/bin/env node
     var test = require("../index.js");
     // console.log(test());
